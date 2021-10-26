@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Feather, Fontisto } from '@expo/vector-icons';
 
-const MainCard = (props) => {
+const MainCard: React.FC = (props) => {
 
     const Icon = () =>{
         if(props.icon === "morning"){
@@ -41,23 +41,17 @@ const MainCard = (props) => {
                 borderRadius: 7,
                 margin: 10,
                 width: 110,
-                height: 210,
+                height: 180,
                 borderRadius:10,
-            },
-            refreshButton: {
-                position:'absolute',
-                margin:30,
-                alignSelf:'flex-start'
-
             },
             text:{
                 color:'#166671',
-                margin:15,
+                margin:5,
                 fontSize:20,
             },
             cardIcon:{
                 color:'#173A60',
-                margin:15,
+                margin:5,
             },
 
         }

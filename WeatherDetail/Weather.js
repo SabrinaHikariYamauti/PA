@@ -9,10 +9,9 @@ import { StyleSheet } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import MainCard from './MainCard';
 import InfoCard from './InfoCard';
-import * as Location from  'expo-location';
-import ConsultAPI from './ConsultAPI';
+//import {ConsultAPI} from './ConsultAPI';
 
-const Weather: React.FC = () => {
+const Weather = ({ navigation }) =>  {
 
     const [darkTheme, setDarkTheme] = useState(true)
     const [currentTemperature, setCurrentTemperature] = useState('27')
@@ -32,7 +31,7 @@ const Weather: React.FC = () => {
                 alignItems: 'center',
             },
             sunIcon: {
-                marginTop: 50,
+                marginTop: 10,
                 color: '#F7A814'
             },
             temperature: {
@@ -103,7 +102,34 @@ const Weather: React.FC = () => {
         return parseInt(kelvin-273);
     }
 
+    async function ConsultAPI(){
+
+        const axios = require('axios');
+    
+        var result=[];
+        
+        await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Sorocaba&appid=fe59787df0be63bef3f337e96c0a5e8e`)
+        .then((response)=>{
+            const data = response.data;
+            const locationName = (data.sys.country + ',' + data.name);
+            const temperaMin = data.main.temp_min;
+            const temperaMax = data.main.temp_max;
+            const wind = data.wind.speed;
+            const humidity = data.main.humidity;
+            const currentTemperature = data.main.temp;
+    
+            result = [currentTemperature, temperaMin, temperaMax, locationName, wind, humidity]
+            console.log(data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    
+        return result
+    }
+
     async function setCurrentWeather(){
+        
         const data = await ConsultAPI();
         console.log(data);
 
@@ -123,9 +149,6 @@ const Weather: React.FC = () => {
 
     return (
         <View style={WeatherStyles.container}>
-            <TouchableOpacity style={WeatherStyles.refreshButton}>
-                <EvilIcons name="refresh" size={30} color={darkTheme ? "white" : 'black'} />
-            </TouchableOpacity>
             <Feather name="sun" style={WeatherStyles.sunIcon} size={40} />
             <View style={WeatherStyles.temperature}>
                 <Text style={WeatherStyles.temperatureText}>{currentTemperature}</Text>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const InfoCard = (props) => {
+const InfoCard: React.FC = (props) =>  {
 
     const InfoCardStyles = StyleSheet.create(
         {
