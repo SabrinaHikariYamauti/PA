@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Weather from './WeatherDetail/Weather';
+//import Weather from './PrevisaoDetalhe/Weather';
 //Import Styles
 import ModeStyles from './Styles/ModeStyles';
 
@@ -31,8 +31,8 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    //<Telas />
-    <Weather />
+    <Telas />
+    //<Weather />
   );
 }
 
