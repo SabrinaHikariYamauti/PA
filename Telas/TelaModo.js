@@ -33,7 +33,7 @@ const TelaModo = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={PrevisaoStyles.PrevisaoButton}
-                    onPress={() => navigation.navigate('Previsao')}
+                    onPress={() => navigation.navigate('PrevisaoGeral')}
                 >
                     <Image
                         source={require('../ButtonIcon/ButtonPrevisao.png')}
